@@ -13,9 +13,13 @@ namespace IdentityCrud.Models
         public DateTime? CreateTime { get; } = DateTime.UtcNow;
         [HiddenInput(DisplayValue = false), Display(Name = "প্রথম এন্ট্রির আই.পি."), Column("CreateIP")]
         public string CreateIPAddress { get; set; }
+        [HiddenInput(DisplayValue = false), Display(Name = "প্রথম এন্ট্রিকারীর আইডি"), Column("AddId")]
+        public string AddUserId { get; set; }
         [HiddenInput(DisplayValue = false), Display(Name = "শেষ হালনাগাদের সময়"), Column("Update")]
         public DateTime? LastUpdateTime { get; set; } = DateTime.UtcNow;
         [HiddenInput(DisplayValue = false), Display(Name = "শেষ হালনাগাদের আই.পি."), Column("LastIP")]
         public string LastUpdateIPAddress { get; set; }
+        [HiddenInput(DisplayValue = false), Display(Name = "শেষ হালনাগাদকারীর আইডি"), Column("LastUpdateId")]
+        public string LastUpdateUserId { get; set; }
     }
 }

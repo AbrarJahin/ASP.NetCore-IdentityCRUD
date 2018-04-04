@@ -1,14 +1,45 @@
-@using Microsoft.AspNetCore.Identity
+﻿@using Microsoft.AspNetCore.Identity
 @using IdentityCrud.Models
 
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 
+@{
+    string pageName = ViewContext.RouteData.Values["controller"].ToString() + "." + ViewContext.RouteData.Values["action"].ToString();
+}
+
 @if (SignInManager.IsSignedIn(User))
 {
+    <ul class="nav navbar-nav">
+        <li class="@(pageName == "ProductTypes.Index" ? "active" : "" )">
+            <a asp-area="" asp-controller="ProductTypes" asp-action="Index">পন্যের ধরন</a>
+        </li>
+        <li class="@(pageName == "ProductCategories.Index" ? "active" : "" )">
+            <a asp-area="" asp-controller="ProductCategories" asp-action="Index">পন্যের ক্যাটাগরি</a>
+        </li>
+        <li class="@(pageName == "Products.Index" ? "active" : "")">
+            <a asp-area="" asp-controller="Products" asp-action="Index">মালামাল সমূহ</a>
+        </li>
+
+        <li class="@(pageName == "Entries.Index" ? "active" : "")">
+            <a asp-area="" asp-controller="Entries" asp-action="Index">মালামালের এন্ট্রি</a>
+        </li>
+        <li class="@(pageName == "Exits.Index" ? "active" : "")">
+            <a asp-area="" asp-controller="Exits" asp-action="Index">পণ্য হস্তান্তর</a>
+        </li>
+    </ul>
     <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="navbar-right">
         <ul class="nav navbar-nav navbar-right">
-            <li>
+            <li class="@(pageName == "Home.Index" ? "active" : "" )">
+                <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+            </li>
+            <li class="@(pageName == "Home.About" ? "active" : "" )">
+                <a asp-area="" asp-controller="Home" asp-action="About">About</a>
+            </li>
+            <li class="@(pageName == "Home.Contact" ? "active" : "" )">
+                <a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
+            </li>
+            <li class="@(pageName == "Manage.Index" ? "active" : "" )">
                 <a asp-area="" asp-controller="Manage" asp-action="Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
             </li>
             <li>
@@ -19,6 +50,11 @@
 }
 else
 {
+    <ul class="nav navbar-nav">
+        <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+        <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
+        <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+    </ul>
     <ul class="nav navbar-nav navbar-right">
         <li><a asp-area="" asp-controller="Account" asp-action="Register">Register</a></li>
         <li><a asp-area="" asp-controller="Account" asp-action="Login">Log in</a></li>

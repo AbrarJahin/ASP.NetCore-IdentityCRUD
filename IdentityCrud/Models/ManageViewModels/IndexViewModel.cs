@@ -1,13 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace IdentityCrud.Models.ManageViewModels
 {
     public class IndexViewModel
     {
+        [Required(ErrorMessage = "ব্যবহারকারীর নাম লিখতে হবে")]
+        [MinLength(3, ErrorMessage = "ব্যবহারকারীর নাম ৩ অক্ষরের বড় হতে হবে")]
+        [MaxLength(50, ErrorMessage = "ব্যবহারকারীর নাম ৫০ অক্ষরের ছোট হতে হবে")]
+        [Display(Name = "ব্যবহারকারীর নাম", Prompt = "ব্যবহারকারীর নাম লিখুন")]
+        public string Name { get; set; }
         public string Username { get; set; }
 
         public bool IsEmailConfirmed { get; set; }
